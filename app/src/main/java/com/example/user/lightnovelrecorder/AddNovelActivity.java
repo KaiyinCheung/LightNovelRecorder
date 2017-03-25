@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
-public class AddNovel extends AppCompatActivity implements View.OnClickListener, DialogInterface.OnClickListener {
+public class AddNovelActivity extends AppCompatActivity implements View.OnClickListener, DialogInterface.OnClickListener {
 
+    DBHelper dbHelper;
     Button button_confirm, button_cancel;
     EditText edit_name, edit_progress, edit_other;
 
@@ -27,6 +29,8 @@ public class AddNovel extends AppCompatActivity implements View.OnClickListener,
         edit_name = (EditText) findViewById(R.id.edit_name);
         edit_other = (EditText) findViewById(R.id.edit_other);
         edit_progress = (EditText) findViewById(R.id.edit_progress);
+
+        dbHelper = new DBHelper(this);
     }
 
     @Override
@@ -43,6 +47,19 @@ public class AddNovel extends AppCompatActivity implements View.OnClickListener,
                 } else finish();
                 break;
             case R.id.button_confirm:
+                if (edit_name.getText().length() == 0) {
+                    Toast.makeText(AddNovelActivity.this, "笨蛋! 你未輸入小說名啊! ", Toast.LENGTH_SHORT).show();
+                } else if (edit_progress.getText().length() == 0) {
+                    Toast.makeText(AddNovelActivity.this, "笨蛋! 你未輸入進度啊! ", Toast.LENGTH_SHORT).show();
+                } else {
+                    boolean isInserted = dbHelper.insertData(edit_name.getText().toString(), edit_progress.getText().toString(), edit_other.getText().toString());
+                    if (isInserted == true)
+                        Toast.makeText(AddNovelActivity.this, "資料已被加入", Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(AddNovelActivity.this, "資料未被加入", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+
                 //TODO -- insert data into database
                 break;
         }
