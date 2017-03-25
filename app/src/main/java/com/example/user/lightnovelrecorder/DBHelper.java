@@ -6,9 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by ProgrammingKnowledge on 4/3/2015.
- */
 
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "Record.db";
@@ -24,7 +21,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,NAME TEXT,PROGRESS TEXT,OTHER TEXT)");
+        db.execSQL("create table " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,NAME TEXT(30),PROGRESS REAL(5),OTHER TEXT(100))");
     }
 
     @Override
@@ -33,12 +30,12 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData(String name, String surname, String marks) {
+    public boolean insertData(String name, String surname, String other) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2, name);
         contentValues.put(COL_3, surname);
-        contentValues.put(COL_4, marks);
+        contentValues.put(COL_4, other);
         long result = db.insert(TABLE_NAME, null, contentValues);
         if (result == -1)
             return false;
@@ -52,13 +49,13 @@ public class DBHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    public boolean updateData(String id, String name, String surname, String marks) {
+    public boolean updateData(String id, String name, String progress, String other) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_1, id);
         contentValues.put(COL_2, name);
-        contentValues.put(COL_3, surname);
-        contentValues.put(COL_4, marks);
+        contentValues.put(COL_3, progress);
+        contentValues.put(COL_4, other);
         db.update(TABLE_NAME, contentValues, "ID = ?", new String[]{id});
         return true;
     }
