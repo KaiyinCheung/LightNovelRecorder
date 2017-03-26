@@ -19,6 +19,10 @@ public class DetailActivity extends AppCompatActivity {
 
         ((TextView) findViewById(R.id.text_nameDetail)).setText(bundle.getString("Name"));
         ((TextView)findViewById(R.id.text_progressDetail)).setText(bundle.getString("Progress"));
+        ((TextView) findViewById(R.id.text_otherDetail)).setText(bundle.getString("Other"));
+        ((TextView) findViewById(R.id.text_dateDetail)).setText(bundle.getString("Date"));
+
+
 
     }
 }

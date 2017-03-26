@@ -7,6 +7,24 @@ package com.example.user.lightnovelrecorder;
 public class ListItem {
     private String name;
     private String progress;
+    private String other;
+    private String date;
+
+    public void setOther(String other) {
+        this.other = other;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getOther() {
+        return other;
+    }
+
+    public String getDate() {
+        return date;
+    }
 
     public String getName() {
         return name;

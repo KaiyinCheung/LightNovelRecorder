@@ -100,6 +100,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ListItem listItem = new ListItem();
             listItem.setName(cursor.getString(1));
             listItem.setProgress(cursor.getString(2));
+            listItem.setOther(cursor.getString(3));
+            listItem.setDate(cursor.getString(4));
             tempList.add(listItem);
         }
 
@@ -112,11 +114,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onItemClick(int position) {
         ListItem listItem = getList().get(position);
 
-
         Intent intent = new Intent(this, DetailActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("Name", listItem.getName());
         bundle.putString("Progress", listItem.getProgress());
+        bundle.putString("Other", listItem.getOther());
+        bundle.putString("Date", listItem.getDate());
         intent.putExtra("Extra", bundle);
         startActivity(intent);
 
