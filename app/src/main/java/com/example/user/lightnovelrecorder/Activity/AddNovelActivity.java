@@ -47,7 +47,10 @@ public class AddNovelActivity extends AppCompatActivity implements View.OnClickL
                             .setNegativeButton("離開(不保存)", this)
                             .setCancelable(true)
                             .show();
-                } else finish();
+                } else {
+                    setResult(RESULT_CANCELED);
+                    finish();
+                }
                 break;
             case R.id.button_confirm:
                 if (edit_name.getText().length() == 0) {
@@ -60,6 +63,7 @@ public class AddNovelActivity extends AppCompatActivity implements View.OnClickL
                         Toast.makeText(AddNovelActivity.this, "資料已被加入", Toast.LENGTH_SHORT).show();
                     else
                         Toast.makeText(AddNovelActivity.this, "資料未被加入", Toast.LENGTH_SHORT).show();
+                    setResult(RESULT_OK);
                     finish();
                 }
 

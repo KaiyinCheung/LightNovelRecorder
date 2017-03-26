@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.Date;
+
 
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "Record.db";
@@ -14,6 +16,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COL_2 = "NAME";
     public static final String COL_3 = "PROGRESS";
     public static final String COL_4 = "OTHER";
+    public static final String COL_5 = "DATE";
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -21,7 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,NAME TEXT(30),PROGRESS REAL(5),OTHER TEXT(100))");
+        db.execSQL("create table " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,NAME TEXT(30),PROGRESS REAL(5),OTHER TEXT(100),DATE TEXT)");
     }
 
     @Override
@@ -36,6 +39,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(COL_2, name);
         contentValues.put(COL_3, surname);
         contentValues.put(COL_4, other);
+        contentValues.put(COL_5, new Date().toString());
         long result = db.insert(TABLE_NAME, null, contentValues);
         if (result == -1)
             return false;
@@ -56,6 +60,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(COL_2, name);
         contentValues.put(COL_3, progress);
         contentValues.put(COL_4, other);
+        contentValues.put(COL_5, new Date().toString());
         db.update(TABLE_NAME, contentValues, "ID = ?", new String[]{id});
         return true;
     }

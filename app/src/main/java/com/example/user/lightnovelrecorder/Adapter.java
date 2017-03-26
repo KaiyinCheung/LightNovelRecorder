@@ -24,6 +24,16 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
     private LayoutInflater inflater;
     private List<ListItem> listOfItem;
 
+    public ItemClickCallBack itemClickCallBack;
+
+    public void setItemClickCallBack(final ItemClickCallBack itemClickCallBack) {
+        this.itemClickCallBack = itemClickCallBack;
+    }
+
+    public interface ItemClickCallBack {
+        void onItemClick(int position);
+    }
+
     public Adapter(List<ListItem> listOfItem, Context context) {
 
         inflater = LayoutInflater.from(context);
@@ -50,7 +60,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
         return listOfItem.size();
     }
 
-    class Holder extends RecyclerView.ViewHolder {
+    class Holder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView text_name, text_progress;
         View container;
 
@@ -59,10 +69,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
             text_name = (TextView) itemView.findViewById(R.id.text_name);
             text_progress = (TextView) itemView.findViewById(R.id.text_progress);
             container = itemView.findViewById(R.id.container);
+            container.setOnClickListener(this);
 
         }
 
 
+        @Override
+        public void onClick(View v) {
+            itemClickCallBack.onItemClick(getAdapterPosition());
+        }
     }
 
 }
