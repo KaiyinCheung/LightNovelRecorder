@@ -1,4 +1,4 @@
-package com.example.user.lightnovelrecorder;
+package com.example.user.lightnovelrecorder.Activity;
 
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.user.lightnovelrecorder.DBHelper;
+import com.example.user.lightnovelrecorder.R;
 
 public class AddNovelActivity extends AppCompatActivity implements View.OnClickListener, DialogInterface.OnClickListener {
 

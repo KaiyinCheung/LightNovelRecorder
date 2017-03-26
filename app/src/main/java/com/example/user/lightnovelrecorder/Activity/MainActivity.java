@@ -1,12 +1,23 @@
-package com.example.user.lightnovelrecorder;
+package com.example.user.lightnovelrecorder.Activity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.example.user.lightnovelrecorder.Adapter;
+import com.example.user.lightnovelrecorder.DBHelper;
+import com.example.user.lightnovelrecorder.ListItem;
+import com.example.user.lightnovelrecorder.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -25,6 +36,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button_view_all.setOnClickListener(this);
 
         dbHelper = new DBHelper(this);
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Adapter adapter = new Adapter(getList(), this);
+        recyclerView.setAdapter(adapter);
 
     }
 
@@ -66,5 +82,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         builder.setMessage(Message);
         builder.show();
 
+    }
+
+    public List<ListItem> getList() {
+        List<ListItem> tempList =new ArrayList<>();
+        DBHelper dbhelper = new DBHelper(this);
+        Cursor cursor = dbhelper.getAllData();
+        while (cursor.moveToNext()) {
+
+            ListItem listItem = new ListItem();
+            listItem.setName(cursor.getString(1));
+            listItem.setProgress(cursor.getString(2));
+            tempList.add(listItem);
+        }
+
+        return tempList;
     }
 }

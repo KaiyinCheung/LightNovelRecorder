@@ -4,18 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.user.lightnovelrecorder.MainActivity">
+    tools:context="com.example.user.lightnovelrecorder.Activity.MainActivity">
 
     <Button
         android:id="@+id/button_add_data"
-        android:text="temp_add_data"
+        android:text="新增紀錄"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/button_view_all"
-        android:text="View"
+        android:text="看資料庫(測試用)"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_weight="1"
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"></android.support.v7.widget.RecyclerView>
 
 </LinearLayout>
