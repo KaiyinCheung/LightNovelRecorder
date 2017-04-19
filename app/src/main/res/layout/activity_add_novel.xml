@@ -4,8 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
     tools:context="com.example.user.lightnovelrecorder.Activity.AddNovelActivity">
+
+
+    <Toolbar
+        android:titleTextColor="@android:color/white"
+        android:title="新增小說"
+        android:background="@android:color/holo_green_light"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"

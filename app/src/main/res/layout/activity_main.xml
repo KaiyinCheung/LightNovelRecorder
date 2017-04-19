@@ -6,6 +6,15 @@
     android:orientation="vertical"
     tools:context="com.example.user.lightnovelrecorder.Activity.MainActivity">
 
+    <Toolbar
+        android:titleTextColor="@android:color/white"
+        android:title="@string/app_name"
+        android:background="@android:color/holo_green_light"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </Toolbar>
+
     <Button
         android:id="@+id/button_add_data"
         android:text="新增紀錄"
